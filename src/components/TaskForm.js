@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import * as actions from './../redux/actions/index';
 class TaskForm extends Component {
     constructor(props) {
         super(props);
@@ -62,6 +63,7 @@ class TaskForm extends Component {
     }
     render() {
         let { taskEditing } = this.props;
+        
         return (
             <div className="panel panel-warning">
                 <div className="panel-heading">
@@ -114,5 +116,15 @@ class TaskForm extends Component {
         );
     }
 }
-
-export default TaskForm;
+const mapStateToProps = state => (
+   {}
+)
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddTask : task => {
+            dispatch(actions.addTask(task))
+        },
+        onCloseTaskForm : () => dispatch(actions.closeForm())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TaskForm);

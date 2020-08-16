@@ -10,9 +10,12 @@
     "express-favicon": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.2"
+    "react-redux": "^7.2.1",
+    "react-scripts": "3.4.2",
+    "redux": "^4.0.5"
   },
   "scripts": {
+    // "start": "react-scripts start",
     "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

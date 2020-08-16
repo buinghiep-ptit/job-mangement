@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TaskItem from './TaskItem';
-
+import { connect } from 'react-redux';
 class TaskList extends Component {
     constructor(props) {
         super(props);
@@ -20,8 +20,9 @@ class TaskList extends Component {
             [name] : value
         })
     }
+
     render() {
-        let { tasks } = this.props;
+        let { taskList } = this.props;
         let { filterName, filterStatus } = this.state;
         return (
             <table className="table table-bordered table-hover">
@@ -59,14 +60,14 @@ class TaskList extends Component {
                         <td></td>
                     </tr>
                     {
-                        tasks.length > 0 && tasks.map( (task, index) =>  
+                        taskList.length > 0 && taskList.map( (task, index) =>  
                         <TaskItem 
                             task={task} 
                             taskId={task.id} 
                             key={task.id} 
                             index={ index } 
-                            onUpdateStatus={ this.props.onUpdateStatus }
-                            onDeleteTask={ this.props.onDeleteTask }
+                            // onUpdateStatus={ this.props.onUpdateStatus }
+                            // onDeleteTask={ this.props.onDeleteTask }
                             onUpdateTask= { this.props.onUpdateTask }
                             /> )
                     }
@@ -75,5 +76,6 @@ class TaskList extends Component {
         );
     }
 }
+const mapStateToProps = state => ({taskList : state.tasks})
 
-export default TaskList;
+export default connect(mapStateToProps, null)(TaskList);
